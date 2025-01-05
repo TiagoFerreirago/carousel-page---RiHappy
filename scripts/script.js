@@ -282,3 +282,73 @@ const diversao_fora = [
     "seller": "Mundo Infantil Store"
   }
 ];
+
+function initializeSlick(){
+    const slickElement = document.querySelector(".product-carousel");
+
+    $(slickElement).slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        arrows: true
+    });
+    slickInitialized =true;
+}
+
+function handleClickTab(){
+
+    const tabs = document.querySelectorAll(".tab-link");
+    tabs.forEach(tabs => tabs.classList.remove("active"));
+
+    if(initializeSlick){
+        $('.product-carousel').slick('unslick')
+    }
+    
+    event.target.classList.add("active");
+
+    const category = event.target.dataset.category;
+
+    if(category === 'novidades'){
+        renderProducts(novidades);
+    }
+    else if(category === 'mais-vendidos'){
+        renderProducts(mais_vendidos);
+    }
+    else if(category === 'fantasia'){
+        renderProducts(fantasias);
+    }
+    else if(category === 'jogos'){
+        renderProducts(jogos);
+    }
+    else if(category === 'diversao'){
+        renderProducts(diversao_fora);
+    }
+    }
+
+function renderProducts(products){
+    const productCarousel = document.querySelector(".product-carousel");
+    productCarousel.innerHTML = ''
+
+    products.forEach(product => {
+        const productsElements = `
+        <div class="product-card">
+        <img src="${product.imageUrl}" alt="${product.productName}">
+        <h3>${product.productName}</h3>
+        <p class= "price">Por ${product.totalPrice}</p>
+        <p class= "installments">ou ${product.installments}x de ${product.installmentValue}</p>
+        <p>${product.installments} ${product.installmentValue}</p>
+        <button class= "add">Comprar</button>
+        <p class= "seller">Vendido por ${product.seller}</p>`;
+
+        productCarousel.innerHTML += productsElements;
+
+    });
+
+    initializeSlick();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    renderProducts(novidades);
+    const tabs = document.querySelectorAll('.tab-link');
+    tabs.forEach(tab => tab.addEventListener('click',handleClickTab));
+})
