@@ -211,7 +211,7 @@ const jogos = [
     "imageUrl": "https://rihappynovo.vtexassets.com/arquivos/ids/318837/Conjunto-de-Magicas---Truque-de-Mestre-Junior---Estrela-1201603600003-embalagem.jpg?v=636107555036900000",
     "installments": 2,
     "installmentValue": 29.95,
-    "totalPrice": 59.9,
+    "totalPrice": 59.90,
     "seller": "BUMERANG BRINQUEDOS"
   },
   {
@@ -254,7 +254,7 @@ const diversao_fora = [
     "imageUrl": "https://rihappynovo.vtexassets.com/arquivos/ids/318837/Conjunto-de-Magicas---Truque-de-Mestre-Junior---Estrela-1201603600003-embalagem.jpg?v=636107555036900000",
     "installments": 2,
     "installmentValue": 29.95,
-    "totalPrice": 59.9,
+    "totalPrice": 59.90,
     "seller": "BUMERANG BRINQUEDOS"
   },
   {
@@ -296,7 +296,7 @@ function initializeSlick(){
     slickInitialized =true;
 }
 
-function handleClickTab(){
+function handleClickTab(event){
 
     const tabs = document.querySelectorAll(".tab-link");
     tabs.forEach(tabs => tabs.classList.remove("active"));
