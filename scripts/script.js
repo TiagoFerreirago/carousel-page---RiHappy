@@ -290,7 +290,8 @@ function initializeSlick(){
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 4,
-        arrows: true
+        arrows: true,
+        dots: true
     });
     slickInitialized =true;
 }
@@ -332,13 +333,12 @@ function renderProducts(products){
     products.forEach(product => {
         const productsElements = `
         <div class="product-card">
-        <img src="${product.imageUrl}" alt="${product.productName}">
-        <h3>${product.productName}</h3>
+        <div class="imageProduct"><img src=${product.imageUrl} alt="${product.productName}"></div>
+        <h3 class="productName">${product.productName}</h3>
         <p class= "price">Por ${product.totalPrice}</p>
-        <p class= "installments">ou ${product.installments}x de ${product.installmentValue}</p>
-        <p>${product.installments} ${product.installmentValue}</p>
+        <p class= "installments">ou ${product.installments}x de ${product.installmentValue} sem juros</p>
         <button class= "add">Comprar</button>
-        <p class= "seller">Vendido por ${product.seller}</p>`;
+        <p class= "seller">${product.seller === "RiHappy" ? `Vendido e entregue por <span class="sellerType"> ${product.seller} </span>`: `Oferta por <span class="sellerType"> ${product.seller}</span>`}</p>`;
 
         productCarousel.innerHTML += productsElements;
 
